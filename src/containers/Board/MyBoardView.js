@@ -4,6 +4,8 @@ import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import * as actions from "../../store/actions";
 import { Row, Col,  Button } from 'antd';
 
+import NewListOrCard  from "../NewListOrCard/NewListOrCard";
+
 
 
 const reorderArray = (list, startIndex, endIndex) => {
@@ -46,6 +48,20 @@ const getCildListStyle = isDraggingOver => ({
     border: 'solid',
     
 });
+
+const move = (source, destination, droppableSource, droppableDestination) => {
+    const sourceClone = Array.from(source);
+    const destClone = Array.from(destination);
+    const [removed] = sourceClone.splice(droppableSource.index, 1);
+
+    destClone.splice(droppableDestination.index, 0, removed);
+
+    const result = {};
+    result[droppableSource.droppableId] = sourceClone;
+    result[droppableDestination.droppableId] = destClone;
+
+    return result;
+};
 
 class MyBoardView extends Component {
     state = {
@@ -209,7 +225,8 @@ class MyBoardView extends Component {
             </DragDropContext>
             </Col>
             <Col span={4}>
-            <Button type="primary" size="large" icon="plus-circle">Add Another List</Button>
+            <NewListOrCard itemType="List"></NewListOrCard>
+            
             </Col>
           </Row>
             

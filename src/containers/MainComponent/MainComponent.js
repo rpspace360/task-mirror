@@ -37,7 +37,7 @@ class MainComponent extends Component {
 					
 					<Layout>
 
-						<Content>
+						<Content style={{ backgroundColor: 'lightgreen', height: "600px" }}>
 							<Switch>
 								<Redirect exact from="/" to="/board/" />
 								<Redirect exact from="/login" to="/board/" />

@@ -42,6 +42,16 @@ const boardReducer = handleActions(
 	{
 		BOARD_RESET_STATE: (state, action) => {
 			return { ...state, ...action.payload }
+		},
+		BOARD_ADDLIST_STATE: (state, action) => {
+			let newList = {
+				id: action.payload.id,
+				listTilte: action.payload.listTilte,
+				cards: []
+			}
+			window.console.log(newList)
+
+			return { data: [...state.data, newList] }
 		}
 	},
 	board

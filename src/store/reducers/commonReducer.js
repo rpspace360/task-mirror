@@ -46,19 +46,13 @@ const commonReducer = handleActions(
 					error: true,
 					loading: false,
 					successMessage: null,
-					loadingRequestCount:
-						state.loadingRequestCount < 1 ? 0 : state.loadingRequestCount - 1,
-					errorMessage: action.payload.request.responseText
-						? action.payload.request.responseText
-						: '"Sorry":"Somethings Wrong"',
 					statusCode: action.payload.response.status
 				};
 			} else {
 				return {
 					...state,
 					error: true,
-					loadingRequestCount:
-						state.loadingRequestCount < 1 ? 0 : state.loadingRequestCount - 1,
+					
 					loading: false,
 					statusCode: null,
 					successMessage: null
