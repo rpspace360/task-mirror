@@ -8,13 +8,13 @@ const board = {
 		cards: [{
 			id: "1b9d6bcd-bbfd-4b2d-9b5d-ab8dfbbd4eed",
 			cardTitle: "Book Hotel",
-			cardDes: "Get a Hoetl",
+			cardDes: "Don't sleep on footpath",
 
 		},
 		{
 			id: "1b9d6bcd-bbfd-4b2d-9b5d-ab8dfdbd4eed",
 			cardTitle: "Book Bus",
-			cardDes: "Get a Bus",
+			cardDes: "Can't Hire Cab",
 		}]
 	},
 	{
@@ -23,13 +23,13 @@ const board = {
 		cards: [{
 			id: "1b8d6bcd-bbfd-4b2d-9b5d-ab8dfbbd4eed",
 			cardTitle: "Meeting",
-			cardDes: "Get a Meeting",
+			cardDes: "Goto Meeting",
 
 		},
 		{
 			id: "1b9d7bcd-bbfd-4b2d-9b5d-ab8dfdbd4eed",
-			cardTitle: "Book Bus",
-			cardDes: "Get a Bus",
+			cardTitle: "Read Book",
+			cardDes: "Continous Learning",
 		}]
 	}
 

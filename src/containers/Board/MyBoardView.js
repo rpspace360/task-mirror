@@ -5,7 +5,7 @@ import * as actions from "../../store/actions";
 import { Popover } from "antd";
 
 import NewListOrCard from "../NewListOrCard/NewListOrCard";
-import "./MyBoardView.scss"
+import "./MyBoardView.scss";
 
 const reorderArray = (list, startIndex, endIndex) => {
   const futureArray = Array.from(list);
@@ -30,7 +30,6 @@ const getItemStyle = (isDragging, draggableStyle) => ({
 const getListStyle = isDraggingOver => ({
   background: isDraggingOver ? "green" : "lightgreen",
   padding: grid,
-
 
   display: "flex",
 
@@ -61,42 +60,7 @@ const move = (source, destination, droppableSource, droppableDestination) => {
 };
 
 class MyBoardView extends Component {
-  state = {
-    data: [
-      {
-        id: "1c9d6bcd-bbfd-4b2d-9b5d-ab8dfbbd4bed",
-        listTilte: "TODO",
-        cards: [
-          {
-            id: "1b9d6bcd-bbfd-4b2d-9b5d-ab8dfbbd4eed",
-            cardTitle: "Book Hotel",
-            cardDes: "Get a Hoetl"
-          },
-          {
-            id: "1b9d6bcd-bbfd-4b2d-9b5d-ab8dfdbd4eed",
-            cardTitle: "Book Bus",
-            cardDes: "Get a Bus"
-          }
-        ]
-      },
-      {
-        id: "1b7b6bcd-bbfd-4b2d-9b5d-ab8dfbbd4bed",
-        listTilte: "PROGRESS",
-        cards: [
-          {
-            id: "1b8d6bcd-bbfd-4b2d-9b5d-ab8dfbbd4eed",
-            cardTitle: "Meeting",
-            cardDes: "Get a Meeting"
-          },
-          {
-            id: "1b9d7bcd-bbfd-4b2d-9b5d-ab8dfdbd4eed",
-            cardTitle: "Book Bus",
-            cardDes: "Get a Bus"
-          }
-        ]
-      }
-    ]
-  };
+  state = {};
 
   getCardsArrayOfAList = id =>
     this.props.boardData.find(element => element.id === id);
@@ -105,9 +69,7 @@ class MyBoardView extends Component {
     window.console.log(result, "ada");
     const { source, destination } = result;
 
-    if (!destination) {
-      return;
-    }
+    if (!destination) return;
 
     if (source.droppableId === destination.droppableId) {
       const items = reorderArray(
@@ -116,9 +78,9 @@ class MyBoardView extends Component {
         destination.index
       );
       this.props.reorderCurrList(items);
-    } else {
-    }
+    } 
   };
+  
   onDragEndHandler = result => {
     window.console.log(result, "arrr");
     const { destination, type } = result;
@@ -189,55 +151,50 @@ class MyBoardView extends Component {
   render() {
     return (
       <React.Fragment>
-
-            <DragDropContext onDragEnd={this.onDragEndHandler}>
-              <Droppable
-                droppableId="droppable"
-                direction="horizontal"
-                type="LIST"
+        <DragDropContext onDragEnd={this.onDragEndHandler}>
+          <Droppable droppableId="droppable" direction="horizontal" type="LIST">
+            {(provided, snapshot) => (
+              <div
+                ref={provided.innerRef}
+                style={getListStyle(snapshot.isDraggingOver)}
               >
-                {(provided, snapshot) => (
-                  <div
-                    ref={provided.innerRef}
-                    style={getListStyle(snapshot.isDraggingOver)}
-                  >
-                    {this.props.boardData.map((item, index) => (
-                      <Draggable
-                        key={item.id}
-                        draggableId={item.id}
-                        index={index}
+                {this.props.boardData.map((item, index) => (
+                  <Draggable key={item.id} draggableId={item.id} index={index}>
+                    {(provided, snapshot) => (
+                      <div
+                        ref={provided.innerRef}
+                        {...provided.draggableProps}
+                        {...provided.dragHandleProps}
+                        style={getItemStyle(
+                          snapshot.isDragging,
+                          provided.draggableProps.style
+                        )}
                       >
-                        {(provided, snapshot) => (
-                          <div
-                            ref={provided.innerRef}
-                            {...provided.draggableProps}
-                            {...provided.dragHandleProps}
-                            style={getItemStyle(
-                              snapshot.isDragging,
-                              provided.draggableProps.style
-                            )}
-                          >
-                            
-                            {/* <DragDropContext onDragEnd={this.onCardDragEnd}> */}
-                            <Droppable droppableId={item.id} type="CARD">
-                              {(childProvided, childSnapshot) => (
-                                  <React.Fragment>
-                                <div
-                                  ref={childProvided.innerRef}
-                                  style={getCildListStyle(
-                                    childSnapshot.isDraggingOver
-                                  )}
-                                >
-                                <span><center>{item.listTilte}</center></span>
-                                  {item.cards.map((childItem, childIndex) => (
-                                    
-                                    <Draggable
-                                      key={childItem.id}
-                                      draggableId={childItem.id}
-                                      index={childIndex}
-                                    >
-                                      {(childProvided, childSnapshot) => (
-                                        <Popover content={childItem.cardDes} title={childItem.cardTitle} trigger="click">
+                        {/* <DragDropContext onDragEnd={this.onCardDragEnd}> */}
+                        <Droppable droppableId={item.id} type="CARD">
+                          {(childProvided, childSnapshot) => (
+                            <React.Fragment>
+                              <div
+                                ref={childProvided.innerRef}
+                                style={getCildListStyle(
+                                  childSnapshot.isDraggingOver
+                                )}
+                              >
+                                <span>
+                                  <center>{item.listTilte}</center>
+                                </span>
+                                {item.cards.map((childItem, childIndex) => (
+                                  <Draggable
+                                    key={childItem.id}
+                                    draggableId={childItem.id}
+                                    index={childIndex}
+                                  >
+                                    {(childProvided, childSnapshot) => (
+                                      <Popover
+                                        content={childItem.cardDes}
+                                        title={childItem.cardTitle}
+                                        trigger="click"
+                                      >
                                         <div
                                           ref={childProvided.innerRef}
                                           {...childProvided.draggableProps}
@@ -247,34 +204,36 @@ class MyBoardView extends Component {
                                             childProvided.draggableProps.style
                                           )}
                                         >
-                                          <span><center>{childItem.cardTitle}</center></span>
+                                          <span>
+                                            <center>
+                                              {childItem.cardTitle}
+                                            </center>
+                                          </span>
                                         </div>
-                                        </Popover>
-                                      )}
-                                    </Draggable>
-                                     
-                                  ))}
-                                  {provided.placeholder}
-                                  
-                                </div>
-                                <NewListOrCard itemType="Card" listId={item.id}></NewListOrCard>
-                                </React.Fragment>
-                              )}
-                            </Droppable>
-                            {/* </DragDropContext> */}
-                            
-                          </div>
-                        )}
-                      </Draggable>
-                    ))}
-                    {provided.placeholder}
-                    <NewListOrCard itemType="List"></NewListOrCard>
-                  </div>
-                )}
-              </Droppable>
-            </DragDropContext>
-         
-    
+                                      </Popover>
+                                    )}
+                                  </Draggable>
+                                ))}
+                                {provided.placeholder}
+                              </div>
+                              <NewListOrCard
+                                itemType="Card"
+                                listId={item.id}
+                              ></NewListOrCard>
+                            </React.Fragment>
+                          )}
+                        </Droppable>
+                        {/* </DragDropContext> */}
+                      </div>
+                    )}
+                  </Draggable>
+                ))}
+                {provided.placeholder}
+                <NewListOrCard itemType="List"></NewListOrCard>
+              </div>
+            )}
+          </Droppable>
+        </DragDropContext>
       </React.Fragment>
     );
   }
