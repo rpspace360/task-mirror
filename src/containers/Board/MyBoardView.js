@@ -2,9 +2,10 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import * as actions from "../../store/actions";
-import { Row, Col, Button } from "antd";
+import { Popover } from "antd";
 
 import NewListOrCard from "../NewListOrCard/NewListOrCard";
+import "./MyBoardView.scss"
 
 const reorderArray = (list, startIndex, endIndex) => {
   const futureArray = Array.from(list);
@@ -27,8 +28,9 @@ const getItemStyle = (isDragging, draggableStyle) => ({
 });
 
 const getListStyle = isDraggingOver => ({
-  background: isDraggingOver ? "lightblue" : "lightgreen",
+  background: isDraggingOver ? "green" : "lightgreen",
   padding: grid,
+
 
   display: "flex",
 
@@ -36,10 +38,12 @@ const getListStyle = isDraggingOver => ({
 });
 
 const getCildListStyle = isDraggingOver => ({
-  background: isDraggingOver ? "lightblue" : "lightgrey",
+  background: isDraggingOver ? "green" : "lightgrey",
   padding: grid,
-  width: 150,
-  border: "solid"
+  width: 200,
+  minHeight: 200,
+  border: "0.5px solid",
+  wordWrap: "break-word"
 });
 
 const move = (source, destination, droppableSource, droppableDestination) => {
@@ -185,8 +189,7 @@ class MyBoardView extends Component {
   render() {
     return (
       <React.Fragment>
-        <Row>
-          <Col span={20}>
+
             <DragDropContext onDragEnd={this.onDragEndHandler}>
               <Droppable
                 droppableId="droppable"
@@ -214,7 +217,7 @@ class MyBoardView extends Component {
                               provided.draggableProps.style
                             )}
                           >
-                            {item.listTilte}
+                            
                             {/* <DragDropContext onDragEnd={this.onCardDragEnd}> */}
                             <Droppable droppableId={item.id} type="CARD">
                               {(childProvided, childSnapshot) => (
@@ -224,13 +227,16 @@ class MyBoardView extends Component {
                                     childSnapshot.isDraggingOver
                                   )}
                                 >
+                                <span><center>{item.listTilte}</center></span>
                                   {item.cards.map((childItem, childIndex) => (
+                                    
                                     <Draggable
                                       key={childItem.id}
                                       draggableId={childItem.id}
                                       index={childIndex}
                                     >
                                       {(childProvided, childSnapshot) => (
+                                        <Popover content={childItem.cardDes} title={childItem.cardTitle} trigger="click">
                                         <div
                                           ref={childProvided.innerRef}
                                           {...childProvided.draggableProps}
@@ -240,30 +246,32 @@ class MyBoardView extends Component {
                                             childProvided.draggableProps.style
                                           )}
                                         >
-                                          {childItem.cardTitle}
+                                          <span><center>{childItem.cardTitle}</center></span>
                                         </div>
+                                        </Popover>
                                       )}
                                     </Draggable>
+                                     
                                   ))}
                                   {provided.placeholder}
+                                  <NewListOrCard itemType="Card" listId={item.id}></NewListOrCard>
                                 </div>
                               )}
                             </Droppable>
                             {/* </DragDropContext> */}
+                            
                           </div>
                         )}
                       </Draggable>
                     ))}
                     {provided.placeholder}
+                    <NewListOrCard itemType="List"></NewListOrCard>
                   </div>
                 )}
               </Droppable>
             </DragDropContext>
-          </Col>
-          <Col span={4}>
-            <NewListOrCard itemType="List"></NewListOrCard>
-          </Col>
-        </Row>
+         
+    
       </React.Fragment>
     );
   }

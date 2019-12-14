@@ -28,10 +28,12 @@ class HorizontalPane extends React.Component {
 				>
 					
 
-					<SubMenu title={<span><Icon type="book" /> List</span>} >
-						<Menu.Item key="list">
-							<Link to="/board/list/">Create New List</Link>
-						</Menu.Item>
+					<SubMenu title={<span><Icon type="book" />Task Mirror</span>} >
+						
+						
+					</SubMenu>
+					<SubMenu title={<span><Icon type="delete" />Clear Board</span>} >
+						
 						
 					</SubMenu>
 

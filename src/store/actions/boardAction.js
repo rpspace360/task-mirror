@@ -9,6 +9,7 @@ let mock = new MockAdapter(axios, { delayResponse: 200 });
 export const boardSetState = createAction("BOARD_SET_STATE")
 export const boardResetState = createAction("BOARD_RESET_STATE")
 export const boardAddListState = createAction("BOARD_ADDLIST_STATE")
+export const boardAddCardState = createAction("BOARD_ADDCARD_STATE")
 // window.localStorage.setItem(
 // 	"my-task-mirror-data",
 	
@@ -53,6 +54,21 @@ export const addNewList = (listTilte, id=uuid()) => {
 		axios.post(url)
 			.then(response => {
 				dispatch(boardAddListState({listTilte:listTilte, id:id}))
+				
+			})
+			.catch(err => {
+				dispatch(getAxiosCallError(err));
+			});
+	};
+}
+
+export const addNewCard = (cardTitle, cardDes, listId, id=uuid()) => {
+	return dispatch => {
+		
+		let url = `/board/card/add`
+		axios.post(url)
+			.then(response => {
+				dispatch(boardAddCardState({cardTitle:cardTitle, cardDes: cardDes, listId: listId,  id:id}))
 				
 			})
 			.catch(err => {

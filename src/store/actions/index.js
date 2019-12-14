@@ -1,5 +1,6 @@
 
 export {
 	reorderCurrList,
-	addNewList
+	addNewList,
+	addNewCard
 } from "./boardAction";

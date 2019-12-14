@@ -49,10 +49,28 @@ const boardReducer = handleActions(
 				listTilte: action.payload.listTilte,
 				cards: []
 			}
-			window.console.log(newList)
+			// window.console.log(newList)
 
 			return { data: [...state.data, newList] }
-		}
+		},
+		BOARD_ADDCARD_STATE: (state, action) => {
+			let targetList = state.data.find(item => item.id === action.payload.listId)
+			window.console.log(targetList, "dasdas", action)
+			if(targetList){
+				let newCard = {
+					id:action.payload.id,
+					cardTitle: action.payload.cardTitle,
+					cardDes: action.payload.cardDes
+
+				}
+				targetList.cards = [...targetList.cards, newCard]
+				return { data: state.data.map(item => item.id === action.payload.listId ? targetList : item ) }
+			}
+			
+			// window.console.log(newList)
+
+			
+		},
 	},
 	board
 );

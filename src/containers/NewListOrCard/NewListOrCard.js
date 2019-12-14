@@ -31,7 +31,7 @@ class NewListOrCard extends Component {
       window.console.log(values, "lll");
       if (!err) {
         console.log("Received values of form: ", values);
-        this.props.addNewList(values.title, values.des);
+        this.props.itemType === "Card" ? this.props.addNewCard(values.title, values.des, this.props.listId) : this.props.addNewList(values.title, values.des);
         this.setState({ visible: false });
       }
     });
@@ -52,16 +52,19 @@ class NewListOrCard extends Component {
 
     return (
       <div>
+      <center>
         <Button
           type="primary"
-          size="large"
+          size="default"
           icon="plus-circle"
+         
           onClick={this.showModal}
         >
-          {`Add Another ${this.props.itemType}`}
+          {`Add ${this.props.itemType}`}
         </Button>
+        </center>
         <Modal
-          title={`Add Another ${this.props.itemType}`}
+          title={`Add ${this.props.itemType}`}
           visible={this.state.visible}
           onCancel={() => this.setState({ visible: false })}
           footer={null}
@@ -107,7 +110,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    addNewList: listTitle => dispatch(actions.addNewList(listTitle))
+    addNewList: listTitle => dispatch(actions.addNewList(listTitle)),
+    addNewCard: (cardTitle, cardDes, listId)  => dispatch(actions.addNewCard(cardTitle, cardDes, listId))
   };
 };
 
