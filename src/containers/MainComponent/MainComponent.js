@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Route, Switch, Redirect } from "react-router-dom";
 import { Layout } from "antd";
 import { connect } from "react-redux";
-import PropTypes from "prop-types";
+
 
 import MyBoardView from "../Board/MyBoardView";
 
@@ -10,7 +10,7 @@ import HorizontalPane from "../../components/TaskMirror/HorizontalPane/Horizonta
 
 import "./MainComponent.scss";
 
-const { Header, Content, Footer, Sider } = Layout;
+const { Content } = Layout;
 
 class MainComponent extends Component {
   render() {

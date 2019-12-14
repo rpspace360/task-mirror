@@ -1,4 +1,15 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A simple react app for task management and monitoring (simple version of Trello)
+
+## App Note
+
+Using [react-beautiful-dnd](https://github.com/atlassian/react-beautiful-dnd) for drag and drop of lists
+
+Using localstorage to store current status of user board as draft
+
+Using react antd for simple UI
+
+Using UUID for unique id for List and Card
+
 
 ## Available Scripts
 

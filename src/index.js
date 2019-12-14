@@ -16,7 +16,6 @@ import { createBrowserHistory } from 'history'
 import "./index.scss";
 import App from "./App";
 import * as serviceWorker from './serviceWorker';
-import axios from "axios";
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const history = createBrowserHistory();

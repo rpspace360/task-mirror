@@ -33,7 +33,11 @@ class HorizontalPane extends React.Component {
 						
 						
 					</SubMenu>
-					<SubMenu title={<span onClick={() => this.props.clearBoardData()}><Icon type="delete" />Clear Board Store</span>} >
+					<SubMenu title={<span onClick={() => this.props.clearBoardData()}><Icon type="delete" />Clear Board</span>} >
+						
+						
+					</SubMenu>
+					<SubMenu title={<span onClick={() => this.props.resetBoardData()}><Icon type="undo" />Restore Default</span>} >
 						
 						
 					</SubMenu>
@@ -54,7 +58,8 @@ const mapStateToProps = state => {
   
   const mapDispatchToProps = dispatch => {
 	return {
-	  clearBoardData: () => dispatch(actions.clearBoardData())
+	  clearBoardData: () => dispatch(actions.clearBoardData()),
+	  resetBoardData: () => dispatch(actions.resetBoardData())
 	};
   };
   

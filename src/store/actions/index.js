@@ -3,6 +3,8 @@ export {
 	reorderCurrList,
 	addNewList,
 	addNewCard,
-	clearBoardData
+	clearBoardData,
+	resetBoardData,
+
 
 } from "./boardAction";

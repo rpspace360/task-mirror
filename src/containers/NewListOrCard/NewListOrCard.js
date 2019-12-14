@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import * as actions from "../../store/actions";
-import { Modal, Button, Input, Form, Icon, Checkbox, Row, Col } from "antd";
+import { Modal, Button, Input, Form, Row, Col } from "antd";
 
 class NewListOrCard extends Component {
   state = { visible: false };
@@ -26,13 +26,14 @@ class NewListOrCard extends Component {
     });
   };
   handleSubmit = e => {
-  
     e.preventDefault();
     this.props.form.validateFields((err, values) => {
       window.console.log(values, "lll");
       if (!err) {
         console.log("Received values of form: ", values);
-        this.props.itemType === "Card" ? this.props.addNewCard(values.title, values.des, this.props.listId) : this.props.addNewList(values.title, values.des);
+        this.props.itemType === "Card"
+          ? this.props.addNewCard(values.title, values.des, this.props.listId)
+          : this.props.addNewList(values.title, values.des);
         this.setState({ visible: false });
       }
     });
@@ -54,17 +55,16 @@ class NewListOrCard extends Component {
 
     return (
       <div>
-      <center>
-        <Button
-          type="primary"
-          size="default"
-          icon="plus-circle"
-          style={{margin: "10px"}}
-         
-          onClick={this.showModal}
-        >
-          {`Add New ${this.props.itemType}`}
-        </Button>
+        <center>
+          <Button
+            type="primary"
+            size="default"
+            icon="plus-circle"
+            style={{ margin: "10px" }}
+            onClick={this.showModal}
+          >
+            {`Add New ${this.props.itemType}`}
+          </Button>
         </center>
         <Modal
           title={`Add ${this.props.itemType}`}
@@ -114,7 +114,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     addNewList: listTitle => dispatch(actions.addNewList(listTitle)),
-    addNewCard: (cardTitle, cardDes, listId)  => dispatch(actions.addNewCard(cardTitle, cardDes, listId))
+    addNewCard: (cardTitle, cardDes, listId) =>
+      dispatch(actions.addNewCard(cardTitle, cardDes, listId))
   };
 };
 
