@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/task-mirror/static/css/main.1c5273fc.chunk.css",
+    "main.js": "/task-mirror/static/js/main.5718ee6f.chunk.js",
+    "main.js.map": "/task-mirror/static/js/main.5718ee6f.chunk.js.map",
+    "runtime-main.js": "/task-mirror/static/js/runtime-main.b821a83f.js",
+    "runtime-main.js.map": "/task-mirror/static/js/runtime-main.b821a83f.js.map",
+    "static/css/2.cf5c3ece.chunk.css": "/task-mirror/static/css/2.cf5c3ece.chunk.css",
+    "static/js/2.f50b6208.chunk.js": "/task-mirror/static/js/2.f50b6208.chunk.js",
+    "static/js/2.f50b6208.chunk.js.map": "/task-mirror/static/js/2.f50b6208.chunk.js.map",
+    "index.html": "/task-mirror/index.html",
+    "precache-manifest.65994bf31b7f2eba71936fd8b5886783.js": "/task-mirror/precache-manifest.65994bf31b7f2eba71936fd8b5886783.js",
+    "service-worker.js": "/task-mirror/service-worker.js",
+    "static/css/2.cf5c3ece.chunk.css.map": "/task-mirror/static/css/2.cf5c3ece.chunk.css.map",
+    "static/css/main.1c5273fc.chunk.css.map": "/task-mirror/static/css/main.1c5273fc.chunk.css.map",
+    "static/js/2.f50b6208.chunk.js.LICENSE": "/task-mirror/static/js/2.f50b6208.chunk.js.LICENSE"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.b821a83f.js",
+    "static/css/2.cf5c3ece.chunk.css",
+    "static/js/2.f50b6208.chunk.js",
+    "static/css/main.1c5273fc.chunk.css",
+    "static/js/main.5718ee6f.chunk.js"
+  ]
+}
