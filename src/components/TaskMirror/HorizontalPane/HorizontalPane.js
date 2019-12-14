@@ -33,7 +33,7 @@ class HorizontalPane extends React.Component {
 						
 						
 					</SubMenu>
-					<SubMenu title={<span onClick={() => this.props.clearBoardData()}><Icon type="delete" />Clear Board</span>} >
+					<SubMenu title={<span onClick={() => this.props.clearBoardData()}><Icon type="delete" />Clear Board Store</span>} >
 						
 						
 					</SubMenu>
