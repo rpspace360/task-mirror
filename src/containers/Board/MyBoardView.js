@@ -80,7 +80,7 @@ class MyBoardView extends Component {
       this.props.reorderCurrList(items);
     } 
   };
-  
+
   onDragEndHandler = result => {
     window.console.log(result, "arrr");
     const { destination, type } = result;
@@ -150,7 +150,7 @@ class MyBoardView extends Component {
 
   render() {
     return (
-      <React.Fragment>
+      <div>
         <DragDropContext onDragEnd={this.onDragEndHandler}>
           <Droppable droppableId="droppable" direction="horizontal" type="LIST">
             {(provided, snapshot) => (
@@ -234,7 +234,7 @@ class MyBoardView extends Component {
             )}
           </Droppable>
         </DragDropContext>
-      </React.Fragment>
+      </div>
     );
   }
 }

@@ -32,17 +32,6 @@ const store = createStore(
   composeEnhancers(applyMiddleware(thunk))
 );
 
-if (
-  window.localStorage.getItem("access-token") &&
-  window.localStorage.getItem("refresh-token")
-) {
-  axios.defaults.headers.common["X-Access-Token"] = localStorage.getItem(
-    "access-token"
-  );
-  axios.defaults.headers.common["X-Refresh-Token"] = localStorage.getItem(
-    "refresh-token"
-  );
-}
 
 ReactDOM.render(
   <BrowserRouter>

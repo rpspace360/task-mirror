@@ -1,6 +1,6 @@
 {
   "name": "my-task-shadow",
-  "homepage": "http://rpspace360.github.io/task-mirror",
+  "homepage": "https://rpspace360.github.io/task-mirror",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
