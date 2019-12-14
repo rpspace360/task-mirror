@@ -221,6 +221,7 @@ class MyBoardView extends Component {
                             {/* <DragDropContext onDragEnd={this.onCardDragEnd}> */}
                             <Droppable droppableId={item.id} type="CARD">
                               {(childProvided, childSnapshot) => (
+                                  <React.Fragment>
                                 <div
                                   ref={childProvided.innerRef}
                                   style={getCildListStyle(
@@ -254,8 +255,10 @@ class MyBoardView extends Component {
                                      
                                   ))}
                                   {provided.placeholder}
-                                  <NewListOrCard itemType="Card" listId={item.id}></NewListOrCard>
+                                  
                                 </div>
+                                <NewListOrCard itemType="Card" listId={item.id}></NewListOrCard>
+                                </React.Fragment>
                               )}
                             </Droppable>
                             {/* </DragDropContext> */}

@@ -1,6 +1,7 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { connect } from "react-redux";
 import { Menu, Icon } from "antd";
+import * as actions from "../../../store/actions";
 
 const SubMenu = Menu.SubMenu;
 
@@ -32,7 +33,7 @@ class HorizontalPane extends React.Component {
 						
 						
 					</SubMenu>
-					<SubMenu title={<span><Icon type="delete" />Clear Board</span>} >
+					<SubMenu title={<span onClick={() => this.props.clearBoardData()}><Icon type="delete" />Clear Board</span>} >
 						
 						
 					</SubMenu>
@@ -45,4 +46,19 @@ class HorizontalPane extends React.Component {
 	}
 }
 
-export default HorizontalPane;
+const mapStateToProps = state => {
+	return {
+	  boardData: state.board.data
+	};
+  };
+  
+  const mapDispatchToProps = dispatch => {
+	return {
+	  clearBoardData: () => dispatch(actions.clearBoardData())
+	};
+  };
+  
+  HorizontalPane.propTypes = {};
+  
+  export default connect(mapStateToProps, mapDispatchToProps)(HorizontalPane);
+  

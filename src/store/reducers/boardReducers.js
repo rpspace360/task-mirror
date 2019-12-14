@@ -67,10 +67,11 @@ const boardReducer = handleActions(
 				return { data: state.data.map(item => item.id === action.payload.listId ? targetList : item ) }
 			}
 			
-			// window.console.log(newList)
-
 			
 		},
+		BOARD_CLEAR_STATE: () => {
+			return {data : []}
+		}
 	},
 	board
 );

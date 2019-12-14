@@ -26,6 +26,7 @@ class NewListOrCard extends Component {
     });
   };
   handleSubmit = e => {
+  
     e.preventDefault();
     this.props.form.validateFields((err, values) => {
       window.console.log(values, "lll");
@@ -35,6 +36,7 @@ class NewListOrCard extends Component {
         this.setState({ visible: false });
       }
     });
+    this.props.form.resetFields();
   };
 
   render() {
@@ -57,10 +59,11 @@ class NewListOrCard extends Component {
           type="primary"
           size="default"
           icon="plus-circle"
+          style={{margin: "10px"}}
          
           onClick={this.showModal}
         >
-          {`Add ${this.props.itemType}`}
+          {`Add New ${this.props.itemType}`}
         </Button>
         </center>
         <Modal

@@ -10,6 +10,8 @@ export const boardSetState = createAction("BOARD_SET_STATE")
 export const boardResetState = createAction("BOARD_RESET_STATE")
 export const boardAddListState = createAction("BOARD_ADDLIST_STATE")
 export const boardAddCardState = createAction("BOARD_ADDCARD_STATE")
+export const clearBoardState = createAction("BOARD_CLEAR_STATE")
+
 // window.localStorage.setItem(
 // 	"my-task-mirror-data",
 	
@@ -25,6 +27,7 @@ const responses = [
 	['GET',  '/board/data', 200, { data: []}],
 	['POST', '/board/list/add', 200],
 	['POST', '/board/card/add', 200],
+	['POST', '/board/delete', 200],
 	
   ];
 
@@ -57,22 +60,42 @@ export const addNewList = (listTilte, id=uuid()) => {
 				
 			})
 			.catch(err => {
-				dispatch(getAxiosCallError(err));
+				dispatch(boardAddListState({listTilte:listTilte, id:id}))
 			});
 	};
 }
 
 export const addNewCard = (cardTitle, cardDes, listId, id=uuid()) => {
 	return dispatch => {
+		window.console.log("comming addNew", cardTitle, cardDes, listId)
 		
 		let url = `/board/card/add`
 		axios.post(url)
 			.then(response => {
+				window.console.log("comming res addNew", cardTitle, cardDes, listId)
 				dispatch(boardAddCardState({cardTitle:cardTitle, cardDes: cardDes, listId: listId,  id:id}))
 				
 			})
 			.catch(err => {
+				dispatch(boardAddCardState({cardTitle:cardTitle, cardDes: cardDes, listId: listId,  id:id}))
 				dispatch(getAxiosCallError(err));
 			});
 	};
 }
+export const clearBoardData = () => {
+	return dispatch => {
+		
+		let url = `/board/delete`
+		axios.post(url)
+			.then(response => {
+				dispatch(clearBoardState())
+				
+			})
+			.catch(err => {
+				dispatch(clearBoardState())
+				
+				dispatch(getAxiosCallError(err));
+			});
+	};
+}
+
