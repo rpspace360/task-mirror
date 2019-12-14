@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { Route, Switch, Redirect } from "react-router-dom";
 import { Layout } from "antd";
 import { connect } from "react-redux";
 
@@ -27,12 +26,7 @@ class MainComponent extends Component {
 
           <Layout>
             <Content style={{ backgroundColor: "lightgreen", height: "600px" }}>
-              <Switch>
-                <Redirect exact from="/" to="/board/" />
-                <Redirect exact from="/login" to="/board/" />
-
-                <Route path="/board/" exact component={MyBoardView} />
-              </Switch>
+              <MyBoardView />
             </Content>
           </Layout>
         </Layout>

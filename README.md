@@ -1,5 +1,7 @@
 A simple react app for task management and monitoring (simple version of Trello)
 
+See running App on github page [here](https://rpspace360.github.io/task-mirror)
+ 
 ## App Note
 
 Using [react-beautiful-dnd](https://github.com/atlassian/react-beautiful-dnd) for drag and drop of lists
